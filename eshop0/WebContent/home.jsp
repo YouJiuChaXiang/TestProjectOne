@@ -58,7 +58,7 @@
 	<div class="col-md-2">
 		<div class="thumbnail today-style">
 			<img src="${pagaComtent.request.contextPath}./images/goods/2016.png"
-				alt="...">
+				alt="..." >
 			<div class="caption">
 				<h3>今日推荐</h3>
 			</div>

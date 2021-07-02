@@ -53,18 +53,21 @@
 						<ul class="nav navbar-nav">
 							<li class="active"><a
 								href="${pageContext.request.contextPath}/index.action">首页</a></li>
-							<li><a href="${pageContext.request.contextPath}/goods/goodsDetail.action?goods_id=${g.goodsId}">热销商品</a></li>
-							<li><a href="#">新到商品</a></li>
+							<li><a href="${pageContext.request.contextPath}/goods/saleGoods.action">热销商品</a></li>
+							<li><a href="${pageContext.request.contextPath}/goods/newGoods.action">新到商品</a></li>
+							<li><a href="./goods/goodsCate.action">商品分类test</a></li>
 
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">商品分类<strong class="caret"></strong></a>
 								<ul class="dropdown-menu">
 									<c:forEach begin="1" end="3" var="c" varStatus="vs">
-										<c:forEach begin="1" end="2" var="cl" varStatus="i">
-											<li><a href="#">女装</a></li>
-										</c:forEach>
+										<%-- <c:forEach begin="1" end="2" var="cl" varStatus="i"> --%>
+											<li><a href="${pageContext.request.contextPath}/goods/goodsCate.action">女装</a></li>
+											<li><a href="${pageContext.request.contextPath}/goods/goodsCate.action">男装</a></li>
+											<li><a href="${pageContext.request.contextPath}/goods/goodsCate.action">零食</a></li>
+										<%-- </c:forEach>--%>
 										<li class="divider"></li>
-									</c:forEach>
+									</c:forEach> 
 								</ul></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">

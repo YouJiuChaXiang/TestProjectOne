@@ -46,10 +46,10 @@ public class GoodsController extends HttpServlet {
 			req.getRequestDispatcher("/goods/goods_detail.jsp").forward(req, resp);
 		//新到商品
 		}else if(url.equals("/goods/newGoods.action")){
-			List<Goods> goodslist=new ArrayList<Goods>();
-			goodslist=GoodsService.getNewgoods();
+			List<Goods>  goodslist=new ArrayList<Goods>();
+			 goodslist=GoodsService.getNewgoods();
 			
-			req.setAttribute("newGoods", goodslist);
+			req.setAttribute("newGoods",  goodslist);
 
 			req.getRequestDispatcher("/goods/new_goods.jsp").forward(req, resp);
 			
@@ -65,10 +65,14 @@ public class GoodsController extends HttpServlet {
 
 			List<Goods> goodslist=new ArrayList<Goods>();
 			int childid=Integer.parseInt(req.getParameter("childid"));
+		
+			//goodslist=GoodsService.getCategoods(0);
 			goodslist=GoodsService.getCategoods(childid);	
-			req.setAttribute("childid", childid);
-//			System.out.println("========"+req.getParameter("childid"));
-			req.setAttribute("goods", goodslist);
+			req.setAttribute("childId", childid);			
+			
+			System.out.println("========"+req.getParameter("childid")); 
+			  req.setAttribute("goods", goodslist);
+			 
 			req.getRequestDispatcher("/goods/goods_list.jsp").forward(req, resp);
 			
 		}		

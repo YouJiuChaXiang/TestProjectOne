@@ -48,10 +48,12 @@ public class HomeController extends HttpServlet {
 			List<Goods> list2=HomeService.getHotGoodsList();
 			req.setAttribute("hotgoodslist", list2);
 			
-		    req.getRequestDispatcher("/home.jsp").forward(req, resp);		    
+		    req.getRequestDispatcher("/home.jsp").forward(req, resp);		
+		   	
 		}
 		
-
+		
+		
 	}
 
 	/**
