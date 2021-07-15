@@ -167,7 +167,14 @@ public class GoodsService {
 				try{		
 					con=DBUtil.getCon();
 				
+					
 				String sql="select * from t_goods where goods_id=?";
+				//传入库
+				 pstmt=con.prepareStatement(sql);
+				 //传出
+			        pstmt.setInt(1, goods_id);
+			        rs=pstmt.executeQuery();
+			        
 
 				Goods good=new Goods();
 				while(rs.next()){ 	    
@@ -257,7 +264,45 @@ public class GoodsService {
 					DBUtil.close(rs,pstmt,con);
 				}
 			}
-			
+			//搜索商品
+		    public static List<Goods> searchGoods(String keyword){
+		          PreparedStatement pstmt=null;
+		          ResultSet rs=null;
+		          Connection con=null;    
+		        
+		        try{    
+		          con=DBUtil.getCon();
+		          
+		        String sql="select goods_id ,cate_id ,goods_name ,goods_price ,"
+		            + "  goods_discount ,goods_stock ,goods_date ,goods_sales,goods_pic"
+		            + " from t_goods "
+		            + " where goods_name like ?"
+		            + " order by goods_sales desc limit 12";
+		        pstmt=con.prepareStatement(sql);
+		        pstmt.setNString(1,'%'+keyword+'%');
+		        rs=pstmt.executeQuery();
+		        
+		            List<Goods> list=new ArrayList<Goods>();
+		        while(rs.next()){ 
+		          Goods good=new Goods();
+		                good.setGoodsId(rs.getInt("goods_id"));
+		                good.setGoodsName(rs.getString("goods_name"));
+		                good.setGoodsPrice(rs.getFloat("goods_price"));
+		                good.setGoodsPic(rs.getString("goods_pic"));
+		                good.setGoodsDiscount(rs.getFloat("goods_discount"));  
+		                good.setGoodsSales(rs.getInt("goods_sales"));
+		                list.add(good);
+		        }
+		        
+		        return list;
+		        
+		        }catch(Exception e){
+		             e.printStackTrace();
+		             return null;
+		        }finally{
+		          DBUtil.close(rs,pstmt,con);
+		        }
+		    }
 			
 			
 			

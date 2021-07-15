@@ -68,8 +68,7 @@
 	<c:forEach items="${todaylist}" var="c" varStatus="vs">
 		<c:if test="${vs.count<=5}">
 			<div class="col-md-2 colum">
-				<a
-					href="${pageContext.request.contextPath}/goods/goodsDetail.action?goods=${c.goods_id}"></a>
+				<a href="${pageContext.request.contextPath}/goods/goodsDetail.action?goods_id=${c.goods_id}">
 				<div class="thumbnail todaygoods" id="">
 					<img src="${pageComtent.request.contextPath}.${c.goods_pic}">
 					<div class="caption text-center">
@@ -164,20 +163,22 @@
 	</div>
 	<div class="panel-body">
 		<c:forEach items="${catelist}" var="c" varStatus="vs">
+		<c:forEach items="${c.goodslist}" var="g" varStatus="gvs">
 			<div class="col-md-2">
 				<a href="${pageContext.request.contextPath}/goods/goodsDetail.action?goods_id=${g.goodsId}">
 					<div class="thumbnail homegoods">
 						<img
-							src="${pageContext.request.contextPath}/images/goods/18_1.jpg"
+							src="${pageContext.request.contextPath}${g.goodsPic}"
 							alt="...">
 						<div class="caption">
-							<p>橘子</p>
-							<p class="font-size">25.0</p>
+							<p>${g.goodsName}</p>
+							<p class="font-size">${g.goodsPrice}</p>
 						</div>
 					</div>
 
 				</a>
 			</div>
+		</c:forEach>
 		</c:forEach>
 	</div>
 

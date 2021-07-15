@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.href = "index.action";
+	location.href = "index.action"; 
 </script>
 </head>
 <body>

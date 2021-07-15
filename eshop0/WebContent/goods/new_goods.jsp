@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 <%@include file="../header.jsp"%>
-	<%-- <div class="row">
+
+<%-- <div class="row">
 		<c:forEach items="${catelist}" var="c" varStatus="sgvs">
 
 				
@@ -30,41 +23,42 @@
 	
 		</c:forEach>
 	</div> --%>
-	
+
 <div class="container">
-    <div class="row clearfix">
-      <div class="col-md-12 column">
-        <div class="row">
-       
-        <c:forEach items="${newGoods}" var="ng">
-          <div class="col-md-3">
-            <div class="thumbnail">
-             <img alt="暂无图片" style = "width:230px;height:230px" alt="300x200"
-                src="${pageContext.request.contextPath}${ng.goodsPic}" /> 
-              <div class="caption text-center">
-                 <h4 class="substr color">${ng.goodsName}</h4> 
-                <p>
-                  原件￥  ${ng.goodsPrice} <span class="glyphicon glyphicon-hand-right"
-                    aria-hidden="true"></span>
-                </p>
-                <p>
-                  现价<span class="badge label-pill label-info">￥ ${ng.goodsDiscount }</span>
-                </p>
-                <p>共售出 ${ng.goodsSales} 件</p>
-              </div>
-            </div>
-          </div>
-          </c:forEach>
-        
-     
-        
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row">
 
-  <!--包含语句  -->
-  <jsp:include page="../footer.jsp"/>
+				<c:forEach items="${newGoods}" var="ng">
+					<div class="col-md-3">
+						<a
+							href="${pageContext.request.contextPath}/goods/goodsDetail.action?goods_id=${ng.goodsId}">
+							<div class="thumbnail">
+								<img alt="暂无图片" style="width: 230px; height: 230px"
+									alt="300x200"
+									src="${pageContext.request.contextPath}${ng.goodsPic}" />
+								<div class="caption text-center">
+									<h4 class="substr color">${ng.goodsName}</h4>
+									<p>
+										原件￥ ${ng.goodsPrice} <span
+											class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+									</p>
+									<p>
+										现价<span class="badge label-pill label-info">￥
+											${ng.goodsDiscount }</span>
+									</p>
+									<p>共售出 ${ng.goodsSales} 件</p>
+								</div>
+							</div>
+						</a>
+					</div>
 
-</body>
-</html>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--包含语句  -->
+<jsp:include page="../footer.jsp" />
+

@@ -11,6 +11,7 @@ import java.util.Map;
 import dao.DBUtil;
 import model.Category;
 import model.Goods;
+import model.User;
 
 public class HomeService {
     //获取今日推荐商品信息
@@ -147,6 +148,71 @@ public class HomeService {
 					DBUtil.close(rs,pstmt,con);
 				}
 		}
+	
+
+		   //验证用户名和密码
+		public static User getCheckUser(String username, String password) {
+			  PreparedStatement pstmt=null;
+			  ResultSet rs=null;
+			  Connection con=null;		
+			  
+			try{		
+				con=DBUtil.getCon();
+			
+				String sql="select * from t_user where user_name=? and user_pass=?";
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, username);
+				pstmt.setString(2, password);
+				rs=pstmt.executeQuery();
+		        rs.next();
+	            User user=new User();
+	            user.setUserName(rs.getString("user_name"));
+	            user.setUserId(rs.getInt("user_id"));
+				return user;
+				
+				}catch(Exception e){
+		         e.printStackTrace();
+		         return null;
+				}finally{
+					DBUtil.close(rs,pstmt,con);
+				}
+		}
+
+		   //新用户注册
+				public static int regUser(Map<String, String[]> map) {
+					  PreparedStatement pstmt=null;
+					  Connection con=null;		
+					  
+					try{		
+						con=DBUtil.getCon();
+					
+						String sql="insert into t_user (user_name,user_pass,user_age,user_sex,user_email) values (?,?,?,?,?)";
+
+						
+						pstmt=con.prepareStatement(sql);
+						pstmt.setString(1,map.get("userName")[0]);
+						pstmt.setString(2, map.get("userPass")[0]);
+
+						if(map.get("userAge")[0]!=""){
+							pstmt.setInt(3,Integer.parseInt(map.get("userAge")[0]));
+						}else{
+							pstmt.setString(3,null);
+						}
+						
+						pstmt.setInt(4, Integer.parseInt(map.get("userSex")[0]));
+						pstmt.setString(5, map.get("userEmail")[0]);
+
+						int i=pstmt.executeUpdate();
+						return i;
+						}catch(Exception e){
+				         e.printStackTrace();
+			            return -1;
+						}finally{
+							DBUtil.close(null,pstmt,con);
+						}		
+					
+				}
 
 		
 		
@@ -154,12 +220,7 @@ public class HomeService {
 		
 		
 		
-		
-		
-		
-		
-		
-		
+			
 		
 		
 		

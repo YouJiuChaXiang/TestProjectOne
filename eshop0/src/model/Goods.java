@@ -9,9 +9,9 @@ public class Goods {
 	private String goodsName;
 	private String goodsDisc;
 
-	private float goodsPrice;
+	private float goodsPrice;//价格
 
-	private float goodsDiscount;
+	private float goodsDiscount;//
 	private int goodsStock;
 	private String goodsOrigin;
 	private String goodsMaterial;
@@ -19,7 +19,7 @@ public class Goods {
 
 	private Date goodsDate;
 	private int goodsSales;
-	private String goodsPic;
+	private String goodsPic;//图片
 
 	private List<GoodsDetailType> typelist;
 	private List<Pic> pics;
